@@ -1,0 +1,87 @@
+<html>
+
+<head>
+    <style>
+        div.row {
+            text-align: center;
+            display: flex;
+        }
+        div.column{margin-left: 15%;}
+    </style>
+</head>
+
+<body>
+    <div>
+        <label for="name">Name of Computer</label>
+        <input type="text" name="name" id="name" placeholder="marka isimi girniz.." />
+        <input type="button" name="btn" id="btn" value="Add to Dell" onclick="AddDell()" />
+        <input type="button" name="btn" id="btn" value="Add to HP" onclick="AddHP()" />
+        <input type="button" name="btn" id="btn" value="Add to Lenovo" onclick="AddLenovo()" />
+       
+    </div>
+    <div class="row">
+
+        <div class="column"><span>HP</span><br /><span id="hplist"></span></div>
+        <div class="column" id="dell"><span>DELL</span><br /><span id="delllist"></span></div>
+        <div class="column"><span>Lenovo</span><br /><span id="lenovolist"></span></div>
+    </div>
+
+
+    <script type="text/javascript">
+        var dell = [];
+        var hp = [];
+        var lenovo = [];
+
+        function update() {
+            document.getElementById("delllist").innerHTML = '<ul>' +
+                dell.map(function (key, index) {
+                    return '<li>' + key + " " + '<input type="button" value="Delete" onClick="delDell('+index+')"/>' + '</li>';
+                }).join('') +
+                '</ul>';
+            document.getElementById("lenovolist").innerHTML = '<ul>' +
+                lenovo.map(function (key,index) {
+                    return '<li>' + key + " " + '<input type="button" value="Delete" onClick="dellenovo('+index+')"/>' + '</li>';
+                }).join('') +
+                '</ul>';
+            document.getElementById("hplist").innerHTML = '<ul>' +
+                hp.map(function (key,index) {
+                    return '<li>' + key + " " + '<input type="button" value="Delete" onClick="delHP('+index+')"/>' + '</li>';
+                }).join('') +
+                '</ul>';
+        }
+        function delDell(key) {
+
+            delete dell[key];
+            update();
+        }
+        function delHP(key) {
+            delete hp[key];
+            update();
+        }
+        function dellenovo(key) {
+            delete lenovo[key];
+            update();
+        }
+        function AddDell() {
+            var s1 = document.getElementById("name").value;
+            dell.push(s1);
+            update();
+        }
+        function AddHP() {
+            var s1 = document.getElementById("name").value;
+            hp.push(s1);
+            update();
+        }
+        function AddLenovo() {
+            var s1 = document.getElementById("name").value;
+            lenovo.push(s1);
+            update();
+        }
+
+
+
+
+    </script>
+</body>
+
+</html>
